@@ -223,13 +223,13 @@ def main():
         json_msg = json.dumps(dict_msg)
 
     try:
-        result = connection.publish(topic=arn_topic, subject=subject,
+        connection.publish(topic=arn_topic, subject=subject,
                            message_structure=message_structure, message=json_msg,
                            message_attributes=message_attributes)
     except boto.exception.BotoServerError as e:
         module.fail_json(msg=to_native(e), exception=traceback.format_exc())
 
-    module.exit_json(msg="OK", item=result)
+    module.exit_json(msg="OK")
 
 
 if __name__ == '__main__':
